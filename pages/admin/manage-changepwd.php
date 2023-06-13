@@ -22,7 +22,7 @@ require "parts/header.php";
         <h1 class="h1">Change Password</h1>
     </div>
     <div class="card mb-2 p-4">
-        <form method="POST" action="/admin/changepwd">
+        <form method="POST" action="admin/changepwd">
             <?php require "parts/message_error.php";?>
             <div class="mb-3">
                 <div class="row">
@@ -52,11 +52,13 @@ require "parts/header.php";
     </div>
     <div class="text-center">
         <a href="/manage-employees" class="btn btn-danger btn-sm"
-        ><i class="bi bi-arrow-left"></i> Back to Manage Employees</a
+        ><i class="bi bi-arrow-left"></i> Back to Users</a
         >
     </div>
 </div>
 
 <?php
+
 require "parts/footer.php";
+
 ?>

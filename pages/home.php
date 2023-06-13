@@ -29,16 +29,16 @@ require "parts/header.php";
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto ps-5">
               <li class="nav-item">
-                <a class="nav-link text-white" href="#second">Agents</a>
+                <a class="nav-link text-white" href="#second"><h5>Agents</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#third">Guns</a>
+                <a class="nav-link text-white" href="#third"><h5>Guns</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#four">Gun Editions</a>
+                <a class="nav-link text-white" href="#four"><h5>Gun Editions</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#five">Rank Embles</a>
+                <a class="nav-link text-white" href="#five"><h5>Rank Embles</h5></a>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto pe-5">

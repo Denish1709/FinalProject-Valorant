@@ -25,6 +25,9 @@ switch($path) {
   case 'admin/changepwd':
     require "includes/admin/changepwd.php";
     break;
+  case 'admin/edit':
+    require "includes/admin/edit.php";
+    break;
 
 // admin
   case 'dashboard':
@@ -38,6 +41,9 @@ switch($path) {
       break;
     case 'manage-changepwd':
       require "pages/admin/manage-changepwd.php";
+      break;
+    case 'manage-edit':
+      require "pages/admin/manage-edit.php";
       break;
 
 // editor

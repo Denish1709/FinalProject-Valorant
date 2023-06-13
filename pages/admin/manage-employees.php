@@ -21,31 +21,31 @@ $users = $query->fetchAll();
 
 require "parts/header.php";
 ?>
-    <div class="container mx-auto my-5" style="max-width: 700px;">
+    <div class="container mx-auto my-5 bg-dark pb-4" style="max-width: 700px;">
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h1 class="h1">Manage Users</h1>
+            <h1 class="text-danger">Manage Employees</h1>
             <div class="text-end">
-                <a href="/manage-add" class="btn btn-primary btn-sm"
+                <a href="/manage-add" class="btn btn-danger btn-md"
                 >Add New User</a
                 >
             </div>
         </div>
-        <div class="card mb-2 p-4">
+        <div class="card mb-2 p-4 bg-danger">
             <?php require "parts/message_success.php"; ?>
-            <table class="table">
+            <table class="table bg-dark">
                 <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col" class="text-end">Actions</th>
+                    <th scope="col" class="text-danger">ID</th>
+                    <th scope="col" class="text-danger">Name</th>
+                    <th scope="col" class="text-danger">Email</th>
+                    <th scope="col" class="text-danger">Role</th>
+                    <th scope="col" class="text-end text-danger">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <!-- display out all the users using foreach -->
                 <?php foreach ($users as $user) { ?>
-                    <tr class="<?php
+                    <tr class="text-danger<?php
                     if (
                         isset( $_SESSION['new_user_email'] ) &&
                         $_SESSION['new_user_email'] == $user['email'] ) {
@@ -60,26 +60,26 @@ require "parts/header.php";
                 <span class="
                 <?php
                 if($user["roles"] == "admin"){
-                    echo "badge bg-primary";
+                    echo "badge bg-secondary";
                 } else if($user["roles"] == "editor"){
-                    echo "badge bg-info";
+                    echo "badge bg-danger";
                 } 
                 ?>"><?= $user['roles']; ?></span>
                         </td>
                         <td class="text-end">
                             <div class="buttons">
                                 <a
-                                        href="/manage-users-edit?id=<?= $user['id']; ?>"
-                                        class="btn btn-success btn-sm me-2"
+                                        href="/manage-edit?id=<?= $user['id']; ?>"
+                                        class="btn btn-success btn-md me-2"
                                 ><i class="bi bi-pencil"></i
                                     ></a>
                                 <a
                                         href="/manage-changepwd?id=<?= $user['id']; ?>"
-                                        class="btn btn-warning btn-sm me-2"
+                                        class="btn btn-warning btn-md me-2"
                                 ><i class="bi bi-key text-white"></i
                                     ></a>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $user['id']; ?>">
+                                <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $user['id']; ?>">
                                     <i class="bi bi-trash"></i
                                     >
                                 </button>
@@ -118,8 +118,8 @@ require "parts/header.php";
                 </tbody>
             </table>
         </div>
-        <div class="text-center">
-            <a href="/dashboard" class="btn btn-danger btn-sm"
+        <div class="text-center pt-3">
+            <a href="/dashboard" class="btn btn-danger btn-md"
             ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
             >
         </div>

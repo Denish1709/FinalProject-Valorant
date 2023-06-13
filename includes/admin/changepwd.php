@@ -33,7 +33,7 @@ if(empty($password) || empty($confirm_password) || empty($id)){
     // if error found, set error message & redirect back to the manage-users-changepwd page with id in the url
     if (isset($error)) {
         $_SESSION['error'] = $error;
-        header("Location: /manage-changepwd?id=$id");
+        // header("Location: /manage-changepwd?id=$id");
         exit;
     }
 
