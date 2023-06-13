@@ -15,10 +15,30 @@ switch($path) {
     require "includes/auth/signup.php";
     break;
 
+  // admin
+  case 'admin/add':
+    require "includes/admin/add.php";
+    break;
+  case 'admin/delete':
+    require "includes/admin/delete.php";
+    break;
+  case 'admin/changepwd':
+    require "includes/admin/changepwd.php";
+    break;
+
 // admin
   case 'dashboard':
     require "pages/admin/dashboard.php";
     break;
+  case 'manage-employees':
+    require "pages/admin/manage-employees.php";
+    break;
+    case 'manage-add':
+      require "pages/admin/manage-add.php";
+      break;
+    case 'manage-changepwd':
+      require "pages/admin/manage-changepwd.php";
+      break;
 
 // editor
 

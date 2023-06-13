@@ -12,7 +12,7 @@ $database = connectToDB();
 
 
 // get all the users
-$sql = "SELECT * FROM users WHERE role = 'admin' OR role = 'editor'";
+$sql = "SELECT * FROM users WHERE roles = 'admin' OR roles = 'editor'";
 $query = $database->prepare($sql);
 $query->execute();
 
@@ -25,7 +25,7 @@ require "parts/header.php";
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h1 class="h1">Manage Users</h1>
             <div class="text-end">
-                <a href="/manage-users-add" class="btn btn-primary btn-sm"
+                <a href="/manage-add" class="btn btn-primary btn-sm"
                 >Add New User</a
                 >
             </div>
@@ -59,14 +59,12 @@ require "parts/header.php";
                         <td>
                 <span class="
                 <?php
-                if($user["role"] == "user"){
-                    echo "badge bg-success";
-                } else if($user["role"] == "editor"){
-                    echo "badge bg-info";
-                } else if($user["role"] == "admin"){
+                if($user["roles"] == "admin"){
                     echo "badge bg-primary";
-                }
-                ?>"><?= $user['role']; ?></span>
+                } else if($user["roles"] == "editor"){
+                    echo "badge bg-info";
+                } 
+                ?>"><?= $user['roles']; ?></span>
                         </td>
                         <td class="text-end">
                             <div class="buttons">
@@ -76,9 +74,9 @@ require "parts/header.php";
                                 ><i class="bi bi-pencil"></i
                                     ></a>
                                 <a
-                                        href="/manage-users-changepwd?id=<?= $user['id']; ?>"
+                                        href="/manage-changepwd?id=<?= $user['id']; ?>"
                                         class="btn btn-warning btn-sm me-2"
-                                ><i class="bi bi-key"></i
+                                ><i class="bi bi-key text-white"></i
                                     ></a>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $user['id']; ?>">
@@ -105,9 +103,9 @@ require "parts/header.php";
                                                   2. add method
                                                   3. add input hidden field for id
                                                 -->
-                                                <form method= "POST" action="/users/delete">
+                                                <form method= "POST" action="/admin/delete">
                                                     <input type="hidden" name="id" value= "<?= $user['id']; ?>" />
-                                                    <button type="button" class="btn btn-danger">Yes, please delete</button>
+                                                    <button type="submit" class="btn btn-danger">Yes, please delete</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -121,7 +119,7 @@ require "parts/header.php";
             </table>
         </div>
         <div class="text-center">
-            <a href="/dashboard" class="btn btn-link btn-sm"
+            <a href="/dashboard" class="btn btn-danger btn-sm"
             ><i class="bi bi-arrow-left"></i> Back to Dashboard</a
             >
         </div>

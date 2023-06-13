@@ -16,7 +16,7 @@ require "parts/header.php";
         <div class="card mb-2 p-4">
             <form
                     method="POST"
-                    action="/manage/users/add"
+                    action="/admin/add"
             >
                 <?php require "parts/message_error.php";?>
                 <div class="mb-3">
@@ -51,11 +51,11 @@ require "parts/header.php";
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="role" class="form-label">Role</label>
-                    <select class="form-control" id="role" name="role">
+                    <label for="roles" class="form-label">Role</label>
+                    <select class="form-control" id="roles" name="roles">
                         <option value="">Select an option</option>
-                        <option value="editor">Editor</option>
                         <option value="admin">Admin</option>
+                        <option value="editor">Editor</option>
                     </select>
                 </div>
                 <div class="d-grid">
@@ -64,7 +64,7 @@ require "parts/header.php";
             </form>
         </div>
         <div class="text-center">
-            <a href="/manage-users" class="btn btn-link btn-sm"
+            <a href="/manage-employees" class="btn btn-link btn-sm"
             ><i class="bi bi-arrow-left"></i> Back to Users</a
             >
         </div>

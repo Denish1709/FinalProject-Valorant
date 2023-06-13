@@ -56,7 +56,7 @@ require "parts/header.php";
                         Manage Employees
                     </h5>
                     <div class="text-center mt-3">
-                        <a href="/manage-users" class="btn btn-primary btn-sm"
+                        <a href="/manage-employees" class="btn btn-primary btn-sm"
                         >Access</a
                         >
                     </div>
