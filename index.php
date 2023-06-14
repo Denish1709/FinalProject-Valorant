@@ -29,6 +29,17 @@ switch($path) {
     require "includes/admin/edit.php";
     break;
 
+  // editor
+  case 'editor/add':
+    require "includes/editor/add.php";
+    break;
+  case 'editor/edit':
+    require "includes/editor/edit.php";
+    break;
+  case 'editor/delete':
+    require "includes/editor/delete.php";
+    break;
+
 // admin
   case 'dashboard':
     require "pages/admin/dashboard.php";
@@ -47,6 +58,15 @@ switch($path) {
       break;
 
 // editor
+case 'manage-character':
+  require "pages/editor/manage-character.php";
+  break;
+case 'add-character':
+  require "pages/editor/add-character.php";
+  break;
+case 'edit-character':
+  require "pages/editor/edit-character.php";
+  break;
 
 // user
   case 'signup':

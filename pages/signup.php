@@ -11,7 +11,7 @@ $todo = $query->fetchAll();
 require "parts/header.php";
 ?>
 <div class="container my-5 mx-auto" style="max-width: 500px;">
-    <h1 class="h1 mb-4 text-center">Sign Up a New Account</h1>
+    <h1 class="h1 mb-4 text-center text-danger">Sign Up a New Account</h1>
     <div class="card p-4">
     <?php require "parts/message_error.php"; ?>
         <form method="POST" action="auth/signup">
@@ -44,7 +44,7 @@ require "parts/header.php";
                 />
             </div>
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-fu">
+                <button type="submit" class="btn btn-danger btn-fu">
                     Sign Up
                 </button>
             </div>
@@ -55,10 +55,10 @@ require "parts/header.php";
     <div
         class="d-flex justify-content-between align-items-center gap-3 mx-auto pt-3"
     >
-        <a href="/home" class="text-decoration-none small"
+        <a href="/home" class="btn btn-danger text-decoration-none small"
         ><i class="bi bi-arrow-left-circle"></i> Go back</a
         >
-        <a href="/login" class="text-decoration-none small"
+        <a href="/login" class="btn btn-danger text-decoration-none small"
         >Already have an account? Login here
             <i class="bi bi-arrow-right-circle"></i
             ></a>
