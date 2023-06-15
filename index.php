@@ -14,6 +14,9 @@ switch($path) {
   case 'auth/signup':
     require "includes/auth/signup.php";
     break;
+  case 'auth/edit-profile':
+    require "includes/auth/edit-profile.php";
+    break;
 
   // admin
   case 'admin/add':
@@ -77,6 +80,9 @@ case 'edit-character':
     break;
   case 'logout':
     require "pages/logout.php";
+    break;
+  case 'profile':
+    require "pages/profile.php";
     break;
   default:
     require "pages/home.php";

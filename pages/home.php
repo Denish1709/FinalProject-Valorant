@@ -31,19 +31,28 @@ require "parts/header.php";
           >
             <span class="navbar-toggler-icon"></span>
           </button>
+          <ul class="navbar-nav">
+          <li class="nav-item text-danger">
+                <?php if ( isset( $_SESSION["user"] ) ) { ?>
+                <a href="/profile" class="btn btn-danger btn-md">
+                  <i class="bi bi-person-circle pe-2"></i> <?= $_SESSION['user']['name'] ?>
+                </a>
+                <?php } ?>
+              </li>
+          </ul>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto ps-5">
               <li class="nav-item">
-                <a class="nav-link text-white" href="#second"><h5>Agents</h5></a>
+                <a class="nav-link text-danger" href="#second"><h5>Agents</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#third"><h5>Guns</h5></a>
+                <a class="nav-link text-danger" href="#third"><h5>Guns</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#four"><h5>Gun Editions</h5></a>
+                <a class="nav-link text-danger" href="#four"><h5>Gun Editions</h5></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="#five"><h5>Rank Embles</h5></a>
+                <a class="nav-link text-danger" href="#five"><h5>Rank Embles</h5></a>
               </li>
             </ul>
             <ul class="navbar-nav ms-auto pe-5">
@@ -72,14 +81,14 @@ require "parts/header.php";
               WELCOME TO THE WORLD OF
             </h3>
             <h1 class="text-danger pt-4 w-50 mx-auto">VALORANT!</h1>
-            <button
+            <!-- <button
               type="button"
               class="btn btn-danger"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               <h4>Lets Get Started</h4>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -90,7 +99,7 @@ require "parts/header.php";
       <ul class="navbar-nav ms-auto pe-5">
               <li class="nav-item">
                <?php if(isEditor()) : ?>
-                <a href="/manage-character" class="btn btn-danger btn-md">Add Character</a>
+                <a href="/manage-character" class="btn btn-danger btn-md">Manage Character</a>
                 <?php endif; ?>
               </li>
       </ul>

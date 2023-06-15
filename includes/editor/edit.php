@@ -42,21 +42,21 @@ if ( isset( $error ) ) {
 }
 
 // if no error found, update the user data based whatever in the $_POST data
-$sql = "UPDATE users SET name = :name, real_name = :real_name, origin = :origin, gender = :gender, role = :role, basic_abilities = :basic_abilities, signature_abilities = :signature_abilities, ultimate_abilities = :ultimate_abilities, describe = :describe WHERE id = :id";
+$sql = "UPDATE characters SET name = :name, real_name = :real_name, origin = :origin, gender = :gender, role = :role, basic_abilities = :basic_abilities, signature_abilities = :signature_abilities, ultimate_abilities = :ultimate_abilities, describe = :describe WHERE id = :id";
 $query = $database->prepare($sql);
 $query->execute([
     'name' => $name,
-        'real_name' => $real_name,
-        'origin' => $origin,
-        'gender' => $gender,
-        'role' => $role,
-        'basic_abilities' => $basic_abilities,
-        'signature_abilities' => $signature_abilities,
-        'ultimate_abilities' => $ultimate_abilities,
-        // 'front_image' => $front_image,
-        // 'back_image' => $back_image,
-        'describe' => $describe,
-        'id' => $id
+    'real_name' => $real_name,
+    'origin' => $origin,
+    'gender' => $gender,
+    'role' => $role,
+    'basic_abilities' => $basic_abilities,
+    'signature_abilities' => $signature_abilities,
+    'ultimate_abilities' => $ultimate_abilities,
+    // 'front_image' => $front_image,
+    // 'back_image' => $back_image,
+    'describe' => $describe,
+    'id' => $id
 ]);
 
 

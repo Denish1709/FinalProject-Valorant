@@ -56,7 +56,7 @@ require "parts/header.php";
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="roles" class="form-label">Role</label>
+                    <label for="roles"  class="form-label">Role</label>
                     <select class="form-control" id="roles" name="roles">
                         <option value="">Select an option</option>
                         <option value="editor" <?= $user['roles'] === 'editor' ? 'selected' : ''; ?>>Editor</option>
@@ -65,7 +65,7 @@ require "parts/header.php";
                 </div>
                 <div class="d-grid">
                     <input type="hidden" name="id" value="<?= $user['id']; ?>" />
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-danger">Update</button>
                 </div>
             </form>
         </div>

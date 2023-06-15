@@ -30,7 +30,7 @@ if ( empty($email) || empty($password) ) {
             // if password is valid, set the user session
             $_SESSION["user"] = $user;
 
-            header("Location: /dashboard");
+            header("Location: /");
             exit;
         } else {
             // if password is incorrect

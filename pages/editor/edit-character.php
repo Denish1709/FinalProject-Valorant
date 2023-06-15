@@ -38,59 +38,58 @@ if ( isset( $_GET['id'] ) ) {
 require "parts/header.php";
 ?>
     <div class="container mx-auto my-5" style="max-width: 700px;">
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <h1 class="h1">Edit Character</h1>
+        <div class="d-flex justify-content-between align-items-center  mb-2">
+            <h1 class="h1 text-danger">Edit Character</h1>
         </div>
-        <div class="card mb-2 p-4">
+        <div class="card bg-dark mb-2 p-4">
             <form method="POST" action="/editor/edit">
                 <div class="mb-3">
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?= $user['name']; ?>" />
+                            <label for="name" class="form-label text-danger"><h4>Name</h4></label>
+                            <input type="text" class="form-control text-danger" id="name" name="name" value="<?= $character['name']; ?>" />
                         </div>
                         <div class="col">
-                            <label for="real_name" class="form-label">Real Name</label>
-                            <input type="text" class="form-control" id="real_name" name="real_name" value="<?= $user['name']; ?>"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <label for="origin" class="form-label">Origin</label>
-                            <input type="text" class="form-control" id="origin" name="origin" value="<?= $user['name']; ?>"/>
-                        </div>
-                        <div class="col">
-                            <label for="added_on" class="form-label">Added Date</label>
-                            <input type="date" class="form-control" id="added_on" name="added_on" value="<?= $user['name']; ?>"/>
+                            <label for="real_name" class="form-label text-danger"><h4>Real Name</h4></label>
+                            <input type="text" class="form-control text-danger" id="real_name" name="real_name" value="<?= $character['real_name']; ?>"/>
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="email" class="">Gender</label>
+                            <label for="origin" class="form-label text-danger"><h4>Origin</h4></label>
+                            <input type="text" class="form-control text-danger" id="origin" name="origin" value="<?= $character['origin']; ?>"/>
+                        </div>
+                        <div class="col">
+                            <label for="added_on" class="form-label text-danger"><h4>Added Date</h4></label>
+                            <input type="date" class="form-control text-danger" id="added_on" name="added_on" value="<?= $character['added_on']; ?>"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="gender" class="text-danger"><h4>Gender</h4></label>
                             <div class="col-sm-10  mb-3">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="maler" value="<?= $user['name']; ?>" required >
-                                    <label class="form-check-label" for="maler">Male</label>
+                                    <input class="form-check-input text-danger" type="radio" name="gender" id="maler" value="<?= $character['gender']; ?>" required >
+                                    <label class="form-check-label text-danger" for="maler"><h4>Male</h4></label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="femaler" value="<?= $user['name']; ?>" required>
-                                    <label class="form-check-label" for="femaler">Female</label>
+                                    <input class="form-check-input text-danger" type="radio" name="gender" id="femaler" value="<?= $character['gender']; ?>" required>
+                                    <label class="form-check-label text-danger" for="femaler"><h4>Female</h4></label>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <label for="role" class="form-label">Role</label>
-                            <select class="form-control" id="role" name="role" value="<?= $user['name']; ?>">
-                                <option value="">Select an option</option>
-                                <option value="Controller">Controller</option>
-                                <option value="Duelist">Duelist</option>
-                                <option value="Initiator">Initiator</option>
-                                <option value="Sentinel">Sentinel</option>
+                            <label for="role" class="form-label text-danger"><h4>Role</h4></label>
+                            <select class="form-control text-danger" id="role" name="role" value="<?= $character['role']; ?>">
+                                <option value="Controller" <?=  $character['role'] === 'Controller' ? 'selected' : ''; ?>>Controller</option>
+                                <option value="Duelist"<?=  $character['role'] === 'Duelist' ? 'selected' : ''; ?>>Duelist</option>
+                                <option value="Initiator"<?=  $character['role'] === 'Initiator' ? 'selected' : ''; ?>>Initiator</option>
+                                <option value="Sentinel"<?=  $character['role'] === 'Sentinel' ? 'selected' : ''; ?>>Sentinel</option>
                             </select>
                         </div>
                     </div>
@@ -98,48 +97,48 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-4">
-                            <label for="basic_abilities" class="form-label">Basic Abilities</label>
-                            <input type="text" class="form-control" id="basic_abilities" name="basic_abilities" value="<?= $user['name']; ?>"/>
+                            <label for="basic_abilities" class="form-label text-danger"><h5>Basic Abilities</h5></label>
+                            <input type="text" class="form-control text-danger" id="basic_abilities" name="basic_abilities" value="<?= $character['basic_abilities']; ?>"/>
                         </div>
                         <div class="col-4">
-                            <label for="signature_abilities" class="form-label">Signature Abilities</label>
-                            <input type="text" class="form-control" id="signature_abilities" name="signature_abilities" value="<?= $user['name']; ?>" />
+                            <label for="signature_abilities" class="form-label text-danger"><h5>Signature Abilities</h5></label>
+                            <input type="text" class="form-control text-danger" id="signature_abilities" name="signature_abilities" value="<?= $character['signature_abilities']; ?>" />
                         </div>
                         <div class="col-4">
-                            <label for="ultimate_abilities" class="form-label">Ultimate Abilities</label>
-                            <input type="text" class="form-control" id="ultimate_abilities" name="ultimate_abilities" value="<?= $user['name']; ?>"/>
+                            <label for="ultimate_abilities" class="form-label text-danger"><h5>Ultimate Abilities</h5></label>
+                            <input type="text" class="form-control text-danger" id="ultimate_abilities" name="ultimate_abilities" value="<?= $character['ultimate_abilities']; ?>"/>
                         </div>
                     </div>
                 </div>
                 <!-- <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="front_image" class="form-label">Front Display Image</label>
-                            <input type="file" name="choosefile" value="<?= $user['name']; ?>" class="form-control" id="front_image"/>
+                            <label for="front_image" class="form-label text-danger"><h4>Front Display Image</h4></label>
+                            <input type="file" name="choosefile" value="<?= $character['front_image']; ?>" class="form-control text-danger" id="front_image"/>
                         </div>
                         <div class="col">
-                            <label for="back_image" class="form-label">Back Display Image</label>
-                            <input type="file" name="choosefile" value="<?= $user['name']; ?>" class="form-control" id="back_image"/>
+                            <label for="back_image" class="form-label text-danger"><h4>Back Display Image</h4></label>
+                            <input type="file" name="choosefile" value="<?= $character['back_image']; ?>" class="form-control text-danger" id="back_image"/>
                         </div>
                     </div>
                 </div> -->
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">
-                            <label class="describe">Story</label>
-                            <textarea type="text" class="form-control" id="describe" name="describe" value="<?= $user['name']; ?>" style="height: 100px"></textarea>
+                            <label class="describe text-danger"><h4>Story</h4></label>
+                            <textarea type="text" class="form-control text-danger" id="describe" name="describe" value="<?= $character['describe']; ?>" style="height: 100px"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="d-grid">
                     <input type="hidden" name="id" value="<?= $character['id']; ?>" />
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-danger"><h5>Update</h5></button>
                 </div>
             </form>
         </div>
         <div class="text-center">
             <a href="/manage-character" class="btn btn-danger btn-md"
-            ><i class="bi bi-arrow-left"></i> Back to Users</a
+            ><i class="bi bi-arrow-left"></i> Back to Character Management</a
             >
         </div>
     </div>

@@ -47,7 +47,7 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="email" class="">Gender</label>
+                            <label for="gender" class="">Gender</label>
                             <div class="col-sm-10  mb-3">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="gender" id="maler" value="M" required>
