@@ -166,8 +166,8 @@ require "parts/header.php";
           >
             <div class="row">
               <?php foreach ($characters as $character) { ?>
-                <div class="col-lg-4 pt-5 pb-5">
                 <?php if($character["role"] == "Controller"){ ?>
+                <div class="col-lg-4 pt-5 pb-5">
                     <div class="agent">
                       <img
                         src="<?= $character['front_image']; ?>"
@@ -182,15 +182,15 @@ require "parts/header.php";
 
                           <a
                             class="btn btn-danger"
-                            href="assets/controller/brim.html"
+                            href="/details"
                             role="button"
                             ><?= $character['name']; ?></a
                           >
                         </div>
                       </div>
-                    </div>;
-                  <?php } ?>
+                    </div>
                 </div>
+                  <?php } ?>
                 <?php } ?>
             </div>
           </div>
@@ -203,9 +203,9 @@ require "parts/header.php";
           >
           <div class="row">
             <?php foreach ($characters as $character) { ?>
-              <div class="col-lg-4 pt-5 pb-5">
               <?php
                 if($character["role"] == "Duelist"){ ?>
+              <div class="col-lg-4 pt-5 pb-5">
                 <div class="agent">
                   <img
                     src="<?= $character['front_image']; ?>"
@@ -220,15 +220,15 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="assets/controller/brim.html"
+                        href="/details"
                         role="button"
                         ><?= $character['name']; ?></a
                       >
                     </div>
                   </div>
-                </div>;
-                <?php } ?>
+                </div>
               </div>
+                <?php } ?>
               <?php } ?>
             </div>
           </div>
@@ -241,9 +241,9 @@ require "parts/header.php";
           >
           <div class="row">
             <?php foreach ($characters as $character) { ?>
-              <div class="col-lg-4 pt-5 pb-5">
               <?php
                 if($character["role"] == "Initiator"){ ?>
+              <div class="col-lg-4 pt-5 pb-5">
                 <div class="agent">
                   <img
                     src="<?= $character['front_image']; ?>"
@@ -258,16 +258,16 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="assets/controller/brim.html"
+                        href="/details"
                         role="button"
                         ><?= $character['name']; ?></a
                       >
                     </div>
                   </div>
-                </div>;
+                </div>
+              </div>
               <?php } 
               ?>
-              </div>
               <?php } ?>
             </div>
           </div>
@@ -280,9 +280,9 @@ require "parts/header.php";
           >
           <div class="row">
             <?php foreach ($characters as $character) { ?>
-              <div class="col-lg-4 pt-5 pb-5">
               <?php
                 if($character["role"] == "Sentinel"){ ?>
+              <div class="col-lg-4 pt-5 pb-5">
                 <div class="agent">
                   <img
                     src="<?= $character['front_image']; ?>"
@@ -297,16 +297,16 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="assets/controller/brim.html"
+                        href="/details"
                         role="button"
                         ><?= $character['name']; ?></a
                       >
                     </div>
                   </div>
-                </div>;
+                </div>
+              </div>
               <?php } 
               ?>
-              </div>
               <?php } ?>
             </div>
           </div>

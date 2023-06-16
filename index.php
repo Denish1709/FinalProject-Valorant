@@ -84,6 +84,9 @@ case 'edit-character':
   case 'profile':
     require "pages/profile.php";
     break;
+    case 'details':
+      require "pages/character-details.php";
+      break;
   default:
     require "pages/home.php";
     break;

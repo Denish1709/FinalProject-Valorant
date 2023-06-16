@@ -23,13 +23,14 @@ $ultimate_abilities = $_POST["ultimate_abilities"];
 // $front_image = $_POST["front_image"];
 // $back_image = $_POST["back_image"];
 $describe = $_POST["describe"];
+$id = $_POST["id"];
 
 /*
     do error check
     - make sure all the fields are not empty
     - make sure the *new* email entered is not duplicated
 */
-if ( empty( $name ) || empty($real_name) || empty($origin) || empty($gender) || empty($role) || empty($basic_abilities) || empty($signature_abilities) || empty($ultimate_abilities) || empty($describe) ) {
+if ( empty( $name ) || empty($real_name) || empty($origin) || empty($gender) || empty($role) || empty($basic_abilities) || empty($signature_abilities) || empty($ultimate_abilities) || empty($describe) || empty($id) ) {
     $error = 'Make sure all fills are filled';
 }
 
