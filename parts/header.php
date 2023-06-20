@@ -17,3 +17,18 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body class="bg-dark">
+    <?php 
+    if( isset( $_SESSION['original_user'] ) && isset($_SESSION['user']) ) : ?>
+    <div class="container">
+      <div class="alert  text-center text-danger">
+        <h3>
+          You are acting as <?= $_SESSION['user']['name']; ?>
+        </h3>
+        <form method="POST" action="admin_stop_acting" class="pt-3">
+          <button type="submit" class="btn btn-info btn-md text-white">
+            <i class="bi bi-stop-circle"></i> Stop acting as <?= $_SESSION['user']['name']; ?>
+          </button>
+        </form>
+      </div>
+    </div>
+    <?php endif; 

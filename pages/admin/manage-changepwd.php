@@ -13,7 +13,7 @@ $database = connectToDB();
 $sql = 'SELECT * FROM users';
 $query = $database->prepare($sql);
 $query->execute();
-$users = $query->fetchAll();
+$users = $query->fetch();
 
 require "parts/header.php";
 ?>

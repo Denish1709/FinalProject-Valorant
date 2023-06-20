@@ -1,13 +1,15 @@
 <?php 
 
-$database = connectToDB();
 
-$sql = 'SELECT * FROM users';
-$query = $database->prepare($sql);
-$query->execute([
-    'id' => $_GET( $_SESSION['user']['id'])
-]);
-$users = $query->fetchAll();
+    $database = connectToDB();
+
+    $sql = 'SELECT * FROM users WHERE id = :id';
+    $query = $database->prepare($sql);
+    $query->execute([
+        'id' => $_SESSION['user']['id']
+    ]);
+    $user = $query->fetch();
+
 
 require "parts/header.php";
 
@@ -20,7 +22,7 @@ require "parts/header.php";
         <div class="card mb-2 p-4">
             <form
                     method="POST"
-                    action="/edit-profile"
+                    action="/auth/edit-profile"
                     enctype="multipart/form-data"
             >
                 <?php require "parts/message_error.php";?>
@@ -56,57 +58,84 @@ require "parts/header.php";
                     <div class="row">
                         <div class="col">
                             <label for="address" class="form-label"> Address</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?= $_SESSION['user']['email'] ?> ">
+                            <input type="text" class="form-control" id="address" name="address" value="<?= $_SESSION['user']['address'] ?> ">
                         </div>
                     </div>
                 </div>
+                <div class="container pt-5">
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                 </div>
             </form>
         </div>
-        <div class="card mb-2 p-4">
-            <form
-                    method="POST"
-                    action="/edit-profile"
-                    enctype="multipart/form-data"
-            >
-                <?php require "parts/message_error.php";?>
-                <form method="POST" action="admin/changepwd">
-                <?php require "parts/message_error.php";?>
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" />
-                        </div>
-                        <div class="col">
-                            <label for="confirm-password" class="form-label"
-                            >Confirm Password</label
-                            >
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="confirm_password"
-                            />
+        
+
+        <!-- Button trigger modal -->
+        <div class=" d-grid text-center">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Change Password
+            </button>   
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Password</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card mb-2 p-4">
+                                <form
+                                        method="POST"
+                                        action="/auth/changepwd-profile"
+                                        enctype="multipart/form-data"
+                                >
+                                    <?php require "parts/message_error.php";?>
+                                    <form method="POST" action="admin/changepwd">
+                                    <?php require "parts/message_error.php";?>
+                                    <div class="mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="password" />
+                                            </div>
+                                            <div class="col">
+                                                <label for="confirm-password" class="form-label"
+                                                >Confirm Password</label
+                                                >
+                                                <input
+                                                    type="password"
+                                                    class="form-control"
+                                                    id="confirm_password"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <input type="hidden" name="id" value="<?= $user['id']; ?>"/>
+                                        <button type="submit" class="btn btn-primary">
+                                            Change Password
+                                        </button>
+                                    </div>
+                                </form>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="d-grid">
-                    <input type="hidden" name="id" value="<?= $users['id']; ?>"/>
-                    <button type="submit" class="btn btn-primary">
-                        Change Password
-                    </button>
-                </div>
-        </form>
-            </form>
-        </div>
-        <div class="container pt-5">
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </div>
-        <div class="text-center">
-            <a href="/" class="btn btn-link btn-sm"
+        
+        <div class="text-center pt-3">
+            <a href="/" class="btn btn-danger btn-md"
             ><i class="bi bi-arrow-left"></i> Back to Main Page</a
             >
         </div>
         <?php } ?>
 </div>
+<?php
+require "parts/footer.php";

@@ -13,6 +13,26 @@ $query = $database->prepare($sql);
 $query->execute();
 $characters = $query->fetchAll();
 
+$sql = 'SELECT * FROM guns';
+$query = $database->prepare($sql);
+$query->execute();
+$guns = $query->fetchAll();
+
+$sql = 'SELECT * FROM ranks';
+$query = $database->prepare($sql);
+$query->execute();
+$ranks = $query->fetchAll();
+
+$sql = 'SELECT * FROM editions';
+$query = $database->prepare($sql);
+$query->execute();
+$editions = $query->fetchAll();
+
+$sql = 'SELECT * FROM maps';
+$query = $database->prepare($sql);
+$query->execute();
+$maps = $query->fetchAll();
+
 require "parts/header.php";
 ?>
     <section class="top">
@@ -41,20 +61,6 @@ require "parts/header.php";
               </li>
           </ul>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto ps-5">
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="#second"><h5>Agents</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="#third"><h5>Guns</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="#four"><h5>Gun Editions</h5></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-danger" href="#five"><h5>Rank Embles</h5></a>
-              </li>
-            </ul>
             <ul class="navbar-nav ms-auto pe-5">
               <li class="nav-item">
                <?php if(isAdmin()) : ?>
@@ -182,9 +188,9 @@ require "parts/header.php";
 
                           <a
                             class="btn btn-danger"
-                            href="/details"
+                            href="/details?id=<?= $character['id']; ?>"
                             role="button"
-                            ><?= $character['name']; ?></a
+                            ><?= $character['agent'] ?></a
                           >
                         </div>
                       </div>
@@ -208,7 +214,7 @@ require "parts/header.php";
               <div class="col-lg-4 pt-5 pb-5">
                 <div class="agent">
                   <img
-                    src="<?= $character['front_image']; ?>"
+                    src=<?= $character['front_image']; ?>
                     alt=""
                     class="img-fluid"
                   />
@@ -220,9 +226,9 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="/details"
+                        href="/details?id=<?= $character['id']; ?>"
                         role="button"
-                        ><?= $character['name']; ?></a
+                        ><?= $character['agent']; ?></a
                       >
                     </div>
                   </div>
@@ -258,9 +264,9 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="/details"
+                        href="/details?id=<?= $character['id']; ?>"
                         role="button"
-                        ><?= $character['name']; ?></a
+                        ><?= $character['agent']; ?></a
                       >
                     </div>
                   </div>
@@ -297,9 +303,9 @@ require "parts/header.php";
 
                       <a
                         class="btn btn-danger"
-                        href="/details"
+                        href="/details?id=<?= $character['id']; ?>"
                         role="button"
-                        ><?= $character['name']; ?></a
+                        ><?= $character['agent']; ?></a
                       >
                     </div>
                   </div>
@@ -313,5 +319,346 @@ require "parts/header.php";
         </div>
       </div>
     </section>
+    <section class="third pt-5 pb-5" id="third">
+      <div class="container">
+        <h1 class="text-center text-danger pt-3 pb-5">Valorant Guns</h1>
+        <!-- <div class="row">
+          <div class="col-lg-3 text-center text-danger">
+            <h3>SIDEARMS</h3>
+          </div>
+          <div class="col-lg-3 text-center text-danger">
+            <h3>SMGS</h3>
+          </div>
+          <div class="col-lg-3 text-center text-danger">
+            <h3>RIFLES</h3>
+          </div>
+          <div class="col-lg-3 text-center text-danger">
+            <h3>SNIPER RIFLES</h3>
+          </div>
+        </div> -->
+        
+        <div class="row">
+          <?php foreach ($guns as $gun) { ?>
+            <div class="col-3 p-3">
+              <div class="card-body p-3">
+                <img
+                  src="<?= $gun['img']; ?>"
+                  class=""
+                  alt=""
+                  style="height:110px; width:270px;"
+                />
+                
+                <p class="card-text text-danger bg-dark text-center"><?= $gun['name']; ?></p>
+                </div>
+            </div>
+          <?php }?>
+        </div>
+        <div class="text-center">
+          <a href="https://valorant.fandom.com/wiki/Weapon_Skins"
+            ><button class="btn bg-danger mt-5">SKINS</button></a
+          >
+        </div>
+      </div>
+    </section>
+    <section class="five pt-5 pb-5" id="five">
+      <div class="container">
+        <h1 class="text-center text-danger pt-5 pb-5">Valorant Ranks</h1>        
+          <div class="row">
+            <div class="col-3">
+              <h4 class="iron pt-5">IRON</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "iron"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="bronze pt-5">Bronze</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "bronze"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="silver pt-5">Silver</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "silver"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="gold pt-5">Gold</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "gold"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3"> 
+              <h4 class="platinum pt-5">Platinum</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "platinum"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="diamond pt-5">Diamond</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "diamond"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+            <h4 class="ascendant pt-5">Ascendant</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "ascendant"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="immortal  pt-5">Immortal</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "immortal"){ ?>
+              <div class="col-3">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <h4 class="radiant pt-5">Radiant</h4>
+            </div>
+            <?php foreach ($ranks as $rank) { ?>
+              <?php
+                if($rank["name"] == "radiant"){ ?>
+              <div class="col-9">
+                <div class="card-body text-center p-3">
+                  <img
+                    src="<?= $rank['img']; ?>"
+                    class="card-img-top"
+                    alt=""
+                    style="height:100px; width:100px;"
+                  />
+                  
+                </div>
+              </div>
+              <?php } 
+              ?>
+            <?php } ?>
+          </div>
+      </div>
+    </section>
+    <section class="third bg-dark pt-5 pb-5" id="six">
+      <div class="container">
+       <h1 class="text-center text-danger pt-5">Maps</h1> 
+       <ul class="navbar-nav ms-auto pe-5">
+              <li class="nav-item">
+               <?php if(isEditor()) : ?>
+                <a href="/manage-map" class="btn btn-danger btn-md">Manage Maps</a>
+                <?php endif; ?>
+              </li>
+      </ul>
+        <div class="d-flex justify-content-center align-items-center text-danger pt-5 pb-5">
+          <div class="row">
+                <?php foreach ($maps as $map) { ?>
+                  <div class="col-4 pt-5 pb-5">
+                      <div class="agent">
+                        <img
+                          src="<?= $map['img']; ?>"
+                          alt=""
+                          class="img-fluid"
+                        />
+                        <h3 class="text-danger text-center"><?= $map['name']; ?></h3>
+                      </div>
+                  </div>
+                <?php } ?>
+          </div>
+          </div>
+        </div>
+    </section>
+    </section>
+    <section class="four bg-dark pt-5 pb-5" id="four">
+      <h1 class="text-center text-danger">Gun Editions</h1>
+      <div
+        class="container d-flex justify-content-center align-items-center text-danger pt-5 pb-5"
+      >
+        <div class="table-responsive">
+          <table class="table text-danger">
+            <tr>
+              <th class="ps-5 pe-5" rowspan="2">
+                <h4 class="text-center pt-5">Edition</h4>
+              </th>
+              <th class="ps-5 pe-5" colspan="2">
+                <h4 class="text-center">Price</h4>
+                <div class="text-center text-danger bg-danger">
+                <img
+                    src="../assets/img/vpoint.png"
+                    alt=""
+                    class="img-fluid"
+                    style="height: 50px; width:100px;"
+                  />
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <th class="ps-5 pe-5">
+                <h4 class="text-center">Guns</h4>
+              </th>
+              <th class="ps-5 pe-5">
+                <h4 class="text-center">Melee</h4>
+              </th>
+            </tr>
+            <?php foreach ($editions as $edition) { ?>
+            <tr>
+              <th class="ps-5 pe-5">
+                <p>
+                <?php if ($edition['img']) : ?>
+                  <div class="text-center text-danger ">
+                  <div>
+                  <img
+                    src="<?= $edition['img']; ?>"
+                    alt=""
+                    class="img-fluid "
+                    style="height:30px; width:30px;"
+                  />
+                  </div>
+                  <?php endif; ?>
+                  <?= $edition['edition']; ?>
+                  </div>
+                </p>
+              </th>
+              <td class="text-center ps-5 pe-5">
+                <p class="pt-4">
+                  <?= $edition['gun']; ?>
+                </p>
+              </td>
+              <td class="text-center ps-5 pe-5">
+                <p class="pt-4">
+                  <?= $edition['melee']; ?>
+                </p>
+              </td>
+            </tr>
+            <?php }?>
+          </table>
+          
+        </div>
+      </div>
+    </section>
 <?php
 require "parts/footer.php";
+?>

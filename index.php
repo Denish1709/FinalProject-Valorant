@@ -17,6 +17,9 @@ switch($path) {
   case 'auth/edit-profile':
     require "includes/auth/edit-profile.php";
     break;
+  case 'auth/changepwd-profile':
+    require "includes/auth/changepwd-profile.php";
+    break;
 
   // admin
   case 'admin/add':
@@ -31,17 +34,35 @@ switch($path) {
   case 'admin/edit':
     require "includes/admin/edit.php";
     break;
+  case 'admin/act_as_user':
+    require "includes/admin/act_as_user.php";
+    break;
+  case 'admin/stop_acting':
+    require "includes/admin/stop_acting.php";
+    break;
 
   // editor
+    // character
   case 'editor/add':
-    require "includes/editor/add.php";
+    require "includes/editor/character/add.php";
     break;
   case 'editor/edit':
-    require "includes/editor/edit.php";
+    require "includes/editor/character/edit.php";
     break;
   case 'editor/delete':
-    require "includes/editor/delete.php";
+    require "includes/editor/character/delete.php";
     break;
+
+    // map
+    case 'editor/map/edit':
+      require "includes/editor/map/edit.php";
+      break;
+    case 'editor/map/add':
+      require "includes/editor/map/add.php";
+      break;
+    case 'editor/map/delete':
+      require "includes/editor/map/delete.php";
+      break;
 
 // admin
   case 'dashboard':
@@ -61,15 +82,27 @@ switch($path) {
       break;
 
 // editor
+  //character 
 case 'manage-character':
-  require "pages/editor/manage-character.php";
+  require "pages/editor/characters/manage-character.php";
   break;
 case 'add-character':
-  require "pages/editor/add-character.php";
+  require "pages/editor/characters/add-character.php";
   break;
 case 'edit-character':
-  require "pages/editor/edit-character.php";
+  require "pages/editor/characters/edit-character.php";
   break;
+
+  // map
+  case 'manage-map':
+    require "pages/editor/maps/manage-map.php";
+    break;
+  case 'edit-map':
+    require "pages/editor/maps/edit-map.php";
+    break;
+  case 'add-map':
+    require "pages/editor/maps/add-map.php";
+    break;
 
 // user
   case 'signup':
@@ -84,9 +117,10 @@ case 'edit-character':
   case 'profile':
     require "pages/profile.php";
     break;
-    case 'details':
-      require "pages/character-details.php";
-      break;
+  case 'details':
+    require "pages/character-details.php";
+    break;
+
   default:
     require "pages/home.php";
     break;

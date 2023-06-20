@@ -11,7 +11,7 @@ if ( !isEditor() ) {
 $database = connectToDB();
 
 // get all the $_POST data
-$name = $_POST["name"];
+$agent = $_POST["agent"];
 $real_name = $_POST["real_name"];
 $origin = $_POST["origin"];
 $added_on = $_POST["added_on"];
@@ -43,10 +43,10 @@ if ( isset( $error ) ) {
 }
 
 // if no error found, update the user data based whatever in the $_POST data
-$sql = "UPDATE characters SET name = :name, real_name = :real_name, origin = :origin, gender = :gender, role = :role, basic_abilities = :basic_abilities, signature_abilities = :signature_abilities, ultimate_abilities = :ultimate_abilities, describe = :describe WHERE id = :id";
+$sql = "UPDATE characters SET agent = :agent, real_name = :real_name, origin = :origin, gender = :gender, role = :role, basic_abilities = :basic_abilities, signature_abilities = :signature_abilities, ultimate_abilities = :ultimate_abilities, describe = :describe, modified_by = :modified_by WHERE id = :id";
 $query = $database->prepare($sql);
 $query->execute([
-    'name' => $name,
+    'agent' => $agent,
     'real_name' => $real_name,
     'origin' => $origin,
     'gender' => $gender,
@@ -57,7 +57,8 @@ $query->execute([
     // 'front_image' => $front_image,
     // 'back_image' => $back_image,
     'describe' => $describe,
-    'id' => $id
+    'id' => $id,
+    'modified_by' => $_SESSION['user']['id']
 ]);
 
 

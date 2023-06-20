@@ -23,8 +23,8 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" />
+                            <label for="agent" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="agent" name="agent" />
                         </div>
                         <div class="col">
                             <label for="real_name" class="form-label">Real Name</label>
@@ -87,18 +87,6 @@ require "parts/header.php";
                         </div>
                     </div>
                 </div>
-                <!-- <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <label for="front_image" class="form-label">Front Display Image</label>
-                            <input type="file" name="choosefile" value="" class="form-control" id="front_image"/>
-                        </div>
-                        <div class="col">
-                            <label for="back_image" class="form-label">Back Display Image</label>
-                            <input type="file" name="choosefile" value="" class="form-control" id="back_image"/>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">

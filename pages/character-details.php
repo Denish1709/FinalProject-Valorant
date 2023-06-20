@@ -1,20 +1,33 @@
 <?php
 
 // check if the current user is an editor or not
-if ( !isEditor() ) {
-    // if current user is not an admin, redirect to dashboard
-    header("Location: /");
-    exit;
+
+if ( isset( $_GET['id'] ) ) {
+  // load database
+  $database = connectToDB();
+
+  // load the user data based on the id
+  $sql = "SELECT * FROM characters WHERE id = :id";
+  $query = $database->prepare( $sql );
+  $query->execute([
+      'id' => $_GET['id']
+  ]);
+
+  // fetch
+  $characters = $query->fetchAll();
+
+  // make sure user data is found in database
+  if ( !$characters ) {
+      // if user don't exists, then we redirect back to manage-users
+      header("Location: /");
+      exit;
+  }
+
+} else {
+  // if $_GET['id'] is not available, then redirect the user back to manage-users
+  header("Location: /");
+  exit;
 }
-
-// load data from database
-$database = connectToDB();
-
-
-$sql = 'SELECT * FROM characters';
-$query = $database->prepare($sql);
-$query->execute();
-$characters = $query->fetchAll();
 
 require "parts/header.php";
 
@@ -34,13 +47,13 @@ require "parts/header.php";
         <?php foreach ($characters as $character) { ?>
           <div class="col-lg-6 pt-5">
             <img
-              src="<?= $character['back_image']; ?>"
+              src=<?= $character['back_image']; ?>
               alt=""
               class="img-fluid"
             />
           </div>
           <div class="col-lg-6 justify-content-center align-items-center pt-5">
-            <h1 class="text-white text-center pb-5"><?= $character['name']; ?></h1>
+            <h1 class="text-white text-center pb-5"><?= $character['agent']; ?></h1>
             <div
               class="accordion accordion-flush w-100"
               id="accordionFlushExample"
@@ -69,18 +82,18 @@ require "parts/header.php";
                         <th class="text-end">Real Name :</th>
                         <td class="ps-3"><?= $character['real_name']; ?></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <th class="text-end">Aliases :</th>
                         <td class="ps-3">Breachy</td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <th class="text-end">Origin :</th>
                         <td class="ps-3"><?= $character['origin']; ?></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <th class="text-end">Race :</th>
                         <td class="ps-3">Human</td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <th class="text-end">Gender :</th>
                         <td class="ps-3"><?= $character['gender']; ?></td>
@@ -118,7 +131,7 @@ require "parts/header.php";
                         <td>
                           <ol>
                             <li class="ps-3"><?= $character['basic_abilities']; ?></li>
-                            <li class="ps-3">Flashpoint</li>
+                            <!-- <li class="ps-3">Flashpoint</li> -->
                           </ol>
                         </td>
                       </tr>
@@ -130,7 +143,7 @@ require "parts/header.php";
                         <th class="text-end">Ultimate Ability :</th>
                         <td class="ps-3"><?= $character['ultimate_abilities']; ?></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <th class="text-end">Ultimate Points :</th>
                         <td class="ps-3">
                           <i class="bi bi-diamond"></i>
@@ -143,7 +156,7 @@ require "parts/header.php";
                           <i class="bi bi-diamond"></i>
                           8
                         </td>
-                      </tr>
+                      </tr> -->
                     </table>
                   </div>
                 </div>
@@ -168,22 +181,22 @@ require "parts/header.php";
                 >
                   <div class="accordion-body text-light bg-dark">
                     <table>
-                      <tr>
+                      <!-- <tr>
                         <th class="text-end">Codenames :</th>
                         <td class="ps-3">Breach</td>
                       </tr>
                       <tr>
                         <th class="text-end">Appearances :</th>
                         <td class="ps-3">Valorant</td>
-                      </tr>
+                      </tr> -->
                       <tr>
                         <th class="text-end">Added :</th>
                         <td class="ps-3"><?= $character['added_on']; ?></td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <th class="text-end">Voice Actor :</th>
                         <td class="ps-3">David Menkin</td>
-                      </tr>
+                      </tr> -->
                     </table>
                   </div>
                 </div>

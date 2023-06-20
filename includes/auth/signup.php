@@ -13,7 +13,6 @@ $name = $_POST["name"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $confirm_password = $_POST["confirm_password"];
-$phonenumber = $_POST["phonenumber"];
 
 // 1. make sure all fields are not empty
 if ( empty( $name ) || empty ( $email ) || empty ( $password ) || empty ( $confirm_password )) {
@@ -26,8 +25,8 @@ if ( empty( $name ) || empty ( $email ) || empty ( $password ) || empty ( $confi
     $error =  "Your password must be at least 8 character";
 } else {
     // recipe
-    $sql = "INSERT INTO users ( `name`, `email`, `password`, `phonenumber`)
-        VALUES (:name, :email, :password, :phonenumber)";
+    $sql = "INSERT INTO users ( `name`, `email`, `password`)
+        VALUES (:name, :email, :password)";
     // prepare
     $query = $database->prepare( $sql );
     // execute
@@ -35,7 +34,6 @@ if ( empty( $name ) || empty ( $email ) || empty ( $password ) || empty ( $confi
         'name' => $name,
         'email' => $email,
         'password' => password_hash( $password, PASSWORD_DEFAULT ), //convert user's password to random string
-        'phonenumber' => $phonenumber
     ]);
 
     // redirect user back to /

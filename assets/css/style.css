@@ -312,7 +312,7 @@ nav {
 }
 
 .platinum {
-  color: #cdd5e0;
+  color: #36adeb;
 }
 
 .diamond {
@@ -321,6 +321,10 @@ nav {
 
 .immortal {
   color: #dc3d4b;
+}
+
+.ascendant {
+  color: #0dae19;
 }
 
 .radiant {
@@ -342,7 +346,7 @@ nav {
   background-size: cover;
 }
 
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
   .gun-grid {
     display: grid;
 
@@ -539,4 +543,4 @@ nav {
     font-weight: bold;
     text-transform: uppercase;
   }
-}
+} */

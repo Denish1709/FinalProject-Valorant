@@ -47,8 +47,8 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="name" class="form-label text-danger"><h4>Name</h4></label>
-                            <input type="text" class="form-control text-danger" id="name" name="name" value="<?= $character['name']; ?>" />
+                            <label for="agent" class="form-label text-danger"><h4>Agent</h4></label>
+                            <input type="text" class="form-control text-danger" id="agent" name="agent" value="<?= $character['agent']; ?>" />
                         </div>
                         <div class="col">
                             <label for="real_name" class="form-label text-danger"><h4>Real Name</h4></label>
@@ -110,23 +110,11 @@ require "parts/header.php";
                         </div>
                     </div>
                 </div>
-                <!-- <div class="mb-3">
-                    <div class="row">
-                        <div class="col">
-                            <label for="front_image" class="form-label text-danger"><h4>Front Display Image</h4></label>
-                            <input type="file" name="choosefile" value="<?= $character['front_image']; ?>" class="form-control text-danger" id="front_image"/>
-                        </div>
-                        <div class="col">
-                            <label for="back_image" class="form-label text-danger"><h4>Back Display Image</h4></label>
-                            <input type="file" name="choosefile" value="<?= $character['back_image']; ?>" class="form-control text-danger" id="back_image"/>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">
                             <label class="describe text-danger"><h4>Story</h4></label>
-                            <textarea type="text" class="form-control text-danger" id="describe" name="describe" value="<?= $character['describe']; ?>" style="height: 100px"></textarea>
+                            <textarea type="text" class="form-control text-danger" id="describe" name="describe" style="height: 100px"><?= $character['describe']; ?></textarea>
                         </div>
                     </div>
                 </div>
