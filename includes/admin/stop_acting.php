@@ -2,7 +2,7 @@
 
 $database = connectToDB();
 
-$_SESSION["user"] = $_SESSION['oriinal_user'];
+$_SESSION["user"] = $_SESSION['original_user'];
 
 unset( $_SESSION['original_user']);
 

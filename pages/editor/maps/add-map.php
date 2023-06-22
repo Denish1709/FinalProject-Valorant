@@ -23,13 +23,9 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" />
-                        </div>
-                        <div class="col">
-                            <label for="img" class="form-label">Map Image</label>
-                            <input type="file" class="form-control" id="img" name="img" />
-                        </div>
+                            <label for="map" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="map" name="map" />
+                        </div>          
                     </div>
                 </div>
                 <div class="d-grid">

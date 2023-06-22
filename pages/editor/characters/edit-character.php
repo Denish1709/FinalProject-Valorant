@@ -13,7 +13,12 @@ if ( isset( $_GET['id'] ) ) {
     $database = connectToDB();
 
     // load the user data based on the id
-    $sql = "SELECT * FROM characters WHERE id = :id";
+    $sql = "SELECT
+    characters.*, 
+    users.name
+    FROM characters
+    JOIN users
+    ON characters.modified_by = users.id WHERE characters.id = :id";
     $query = $database->prepare( $sql );
     $query->execute([
         'id' => $_GET['id']
@@ -72,16 +77,10 @@ require "parts/header.php";
                     <div class="row">
                         <div class="col">
                             <label for="gender" class="text-danger"><h4>Gender</h4></label>
-                            <div class="col-sm-10  mb-3">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input text-danger" type="radio" name="gender" id="maler" value="<?= $character['gender']; ?>" required >
-                                    <label class="form-check-label text-danger" for="maler"><h4>Male</h4></label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input text-danger" type="radio" name="gender" id="femaler" value="<?= $character['gender']; ?>" required>
-                                    <label class="form-check-label text-danger" for="femaler"><h4>Female</h4></label>
-                                </div>
-                            </div>
+                            <select class="form-control text-danger" id="gender" name="gender" value="<?= $character['gender']; ?>">
+                                <option value="M" <?=  $character['gender'] === 'M' ? 'selected' : ''; ?>>Male</option>
+                                <option value="F"<?=  $character['gender'] === 'F' ? 'selected' : ''; ?>>Female</option>
+                            </select>
                         </div>
                         <div class="col">
                             <label for="role" class="form-label text-danger"><h4>Role</h4></label>
@@ -113,8 +112,15 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">
-                            <label class="describe text-danger"><h4>Story</h4></label>
-                            <textarea type="text" class="form-control text-danger" id="describe" name="describe" style="height: 100px"><?= $character['describe']; ?></textarea>
+                            <label class="story text-danger"><h4>Story</h4></label>
+                            <textarea type="text" class="form-control text-danger" id="story" name="story" style="height: 100px"><?= $character['story']; ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Modified by: <?php $character['name'] ; ?> on ( <?= $character["modified_at"]; ?> )</h4>
                         </div>
                     </div>
                 </div>

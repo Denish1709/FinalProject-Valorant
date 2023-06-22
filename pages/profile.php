@@ -1,6 +1,5 @@
 <?php 
 
-
     $database = connectToDB();
 
     $sql = 'SELECT * FROM users WHERE id = :id';
@@ -18,6 +17,7 @@ require "parts/header.php";
 <?php if ( isset( $_SESSION["user"] ) ) { ?>
         <div class="text-center pb-3 mb-1">
             <h1 class="text-danger">Edit Profile</h1>
+            <?php require "parts/message_success.php"; ?>
         </div>
         <div class="card mb-2 p-4">
             <form
@@ -30,11 +30,11 @@ require "parts/header.php";
                     <div class="row">
                         <div class="col">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?= $_SESSION['user']['name'] ?>"/>
+                            <input type="text" class="form-control" id="name" name="name" value="<?=$user['name'] ?>"/>
                         </div>
                         <div class="col">
                             <label for="email" class="form-label">email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?= $_SESSION['user']['email'] ?>" />
+                            <input type="email" class="form-control" id="email" name="email" value="<?=$user['email'] ?>" />
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ require "parts/header.php";
                                     <input type="text" class="form-control" placeholder="+60" disabled readonly>
                                 </div>
                                 <div class="col">
-                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<?= $_SESSION['user']['phonenumber'] ?>" />
+                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" value="<?=$user['phonenumber'] ?>" />
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@ require "parts/header.php";
                     <div class="row">
                         <div class="col">
                             <label for="address" class="form-label"> Address</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?= $_SESSION['user']['address'] ?> ">
+                            <input type="text" class="form-control" id="address" name="address" value="<?=$user['address'] ?> ">
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@ require "parts/header.php";
                                         <div class="row">
                                             <div class="col">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="password" />
+                                                <input type="password" class="form-control" name="password" id="password" />
                                             </div>
                                             <div class="col">
                                                 <label for="confirm-password" class="form-label"
@@ -109,6 +109,7 @@ require "parts/header.php";
                                                 <input
                                                     type="password"
                                                     class="form-control"
+                                                    name="confirm_password"
                                                     id="confirm_password"
                                                 />
                                             </div>

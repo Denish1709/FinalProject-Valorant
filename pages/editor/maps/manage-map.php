@@ -12,7 +12,7 @@ $database = connectToDB();
 
 
 // get all the users
-$sql = "SELECT * FROM maps";
+$sql = "SELECT maps.*, users.name FROM maps JOIN users ON maps.modified_by = users.id";
 $query = $database->prepare($sql);
 $query->execute();
 
@@ -37,6 +37,7 @@ require "parts/header.php";
                 <tr>
                     <th scope="col" class="text-danger text-center">Name</th>
                     <th scope="col" class="text-danger text-center">Map</th>
+                    <th scope="col" class="text-danger">Last Modified By</th>
                     <th scope="col" class="text-end text-danger">Actions</th>
                 </tr>
                 </thead>
@@ -46,15 +47,16 @@ require "parts/header.php";
                     <tr class="text-danger<?php
                     if (
                         isset( $_SESSION['new_map'] ) &&
-                        $_SESSION['new_map'] == $map['name'] ) {
+                        $_SESSION['new_map'] == $map['map'] ) {
                         echo "table-success";
                         unset( $_SESSION['new_map'] );
                     }
                     ?>">
-                        <td class="text-center pt-5"><?= $map['name']; ?></td>
+                        <td class="text-center pt-5"><?= $map['map']; ?></td>
                         <td class="text-center">
                             <img src="<?= $map['img']; ?>" alt="" class="img-fluid">
                         </td>
+                        <td class="text-center"><?= $map['name']; ?></td> 
                         <td class="text-end">
                             <div class="buttons pt-5">
                                 <a
@@ -74,11 +76,11 @@ require "parts/header.php";
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this map: <?= $map['name']; ?>?</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this map: <?= $map['map']; ?>?</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-start">
-                                                You're currently deleting <?= $map['name']; ?>
+                                                You're currently deleting <?= $map['map']; ?>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

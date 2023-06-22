@@ -6,7 +6,7 @@ $database = connectToDB();
 // get all the $_POST data
 $password = $_POST['password'];
 $confirm_password = $_POST["confirm_password"];
-$id  = $_POST['id'];
+$id  = $_SESSION['user']['id'];
 
 /*
     do error checking
@@ -22,11 +22,12 @@ if(empty($password) || empty($confirm_password) || empty($id)){
     // 3. make sure password is at least 8 chars.
     $error = "Your password must be at least 8 characters";
 
+}
 
     // if error found, set error message & redirect back to the manage-users-changepwd page with id in the url
     if (isset($error)) {
         $_SESSION['error'] = $error;
-        // header("Location: /manage-changepwd?id=$id");
+        header("Location: /profiles?id=$id");
         exit;
     }
 
@@ -35,7 +36,7 @@ if(empty($password) || empty($confirm_password) || empty($id)){
     $query = $database->prepare($sql);
     $query->execute([
         'password' => password_hash($password, PASSWORD_DEFAULT),
-        'id' => $id
+        'id' => $_SESSION['user']['id']
     ]);
 
 
@@ -43,6 +44,5 @@ if(empty($password) || empty($confirm_password) || empty($id)){
     $_SESSION["success"] = "Password has been changed.";
 
     // redirect
-    header("Location: /profiles");
+    header("Location: /profile");
     exit;
-}

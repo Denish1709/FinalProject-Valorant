@@ -19,7 +19,7 @@ $role = $_POST["role"];
 $basic_abilities = $_POST["basic_abilities"];
 $signature_abilities = $_POST["signature_abilities"];
 $ultimate_abilities = $_POST["ultimate_abilities"];
-$describe = $_POST["describe"];
+$story = $_POST["story"];
 
 // $front_image = $_FILES['front_image'];
 // $image_name = $front_image['name'];
@@ -42,8 +42,8 @@ if( isset ($error)){
     $_SESSION['error'] = $error;
     header("Location: /add-character");
 } else {
-    $sql = "INSERT INTO characters (`agent,`real_name`, `origin`, `gender`, `role`, `basic_abilities`, `signature_abilities`, `ultimate_abilities`, ` describe` )
-        VALUES(:agent, :real_name, :origin, :gender, :role, :basic_abilities, :signatue_abilities, :ultimate_abilities, :describe)";
+    $sql = "INSERT INTO characters (`agent`,`real_name`, `origin`, `gender`, `role`, `basic_abilities`, `signature_abilities`, `ultimate_abilities`, `story` )
+        VALUES(:agent, :real_name, :origin, :gender, :role, :basic_abilities, :signature_abilities, :ultimate_abilities, :story)";
     $query = $database->prepare( $sql );
     $query->execute([
         'agent' => $agent,
@@ -54,7 +54,7 @@ if( isset ($error)){
         'basic_abilities' => $basic_abilities,
         'signature_abilities' => $signature_abilities,
         'ultimate_abilities' => $ultimate_abilities,
-        'describe' => $describe
+        'story' => $story
     ]);
 
     $_SESSION["success"] = "New Character has been added.";

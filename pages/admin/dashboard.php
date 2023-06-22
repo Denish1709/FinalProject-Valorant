@@ -2,9 +2,21 @@
 
 if ( !isAdmin() ) {
     // if current user is not an admin, redirect to dashboard
-    header("Location: /");
+    header("Location: /dashboard");
     exit;
 }
+
+// load data from database
+$database = connectToDB();
+
+
+// get all the users
+$sql = "SELECT * FROM users";
+$query = $database->prepare($sql);
+$query->execute();
+
+// fetch the data from query
+$user = $query->fetch();
 
 require "parts/header.php";
 
@@ -22,9 +34,12 @@ require "parts/header.php";
                         <p>Editor Mode</p>
                     </h5>
                     <div class="text-center mt-3">
-                        <a href="/manage-posts" class="btn btn-danger btn-lg"
-                        >Access</a
-                        >
+                    <form method="POST" action="admin/act_as_editor" class="d-inline">
+                        <input type="hidden" name="id" value="<?= $user['id']; ?>"/>
+                        <button type="submit" class="btn btn-danger btn-lg"
+                        >Access
+                        </button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -39,9 +54,12 @@ require "parts/header.php";
                         <p>User Mode</p>
                     </h5>
                     <div class="text-center mt-3">
-                        <a href="/manage-posts" class="btn btn-danger btn-lg"
-                        >Access</a
-                        >
+                    <form method="POST" action="admin/act_as_user" class="d-inline">
+                        <input type="hidden" name="id" value="<?= $user['id']; ?>"/>
+                        <button type="submit" class="btn btn-danger btn-lg"
+                        >Access
+                        </button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -56,7 +74,7 @@ require "parts/header.php";
                         <p>Manage Employees</p>
                     </h5>
                     <div class="text-center mt-3">
-                        <a href="/manage-employees" class="btn btn-primary btn-lg"
+                        <a href="/manage-employees" class="btn btn-danger btn-lg"
                         >Access</a
                         >
                     </div>

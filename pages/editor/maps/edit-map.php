@@ -13,7 +13,7 @@ if ( isset( $_GET['id'] ) ) {
     $database = connectToDB();
 
     // load the user data based on the id
-    $sql = "SELECT * FROM maps WHERE id = :id";
+    $sql = "SELECT maps.*, users.name AS user_name FROM maps JOIN users ON maps.modified_by = users.id WHERE maps.id = :id";
     $query = $database->prepare( $sql );
     $query->execute([
         'id' => $_GET['id']
@@ -46,13 +46,14 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?= $maps['name']; ?>" />
-                        </div>
-                        <div class="col">
-                            <label for="img" class="form-label">Map Image</label>
-                            <input type="file" class="form-control" id="img" name="img" value="<?= $maps['img']; ?>" />
-                        </div>
+                            <label for="map" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="map" name="map" value="<?= $maps['map']; ?>" />
+                        </div>                  
+                    </div>
+                    <div class="row">
+                        <div class="col text-end">
+                            <p class="text-danger">Last Modified by: <?php echo $maps['user_name']; ?></p>
+                        </div>                  
                     </div>
                 </div>
                 <div class="d-grid">

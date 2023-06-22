@@ -11,8 +11,7 @@ if ( !isEditor() ) {
 $database = connectToDB();
 
 // get all the $_POST data
-$name = $_POST['name'];
-$img = $_POST['img'];
+$map = $_POST['map'];
 $id = $_POST['id'];
 
 /*
@@ -20,20 +19,8 @@ $id = $_POST['id'];
     - make sure all the fields are not empty
     - make sure the *new* email entered is not duplicated
 */
-if(empty($name) || empty($img) || empty($id)){
+if(empty($map) || empty($id)){
     $error = "Make sure all the fields are filled.";
-}
-
-// check if email is already taken by calling the database
-$sql = "SELECT * FROM maps WHERE id != :id";
-$query = $database->prepare($sql);
-$query->execute([
-    'id' => $id
-]);
-$maps = $query->fetch();
-
-if ( $maps ){
-    $error = "Please enter different email";
 }
 
 // if error found, set error message & redirect back to the manage-users-edit page with id in the url
@@ -44,12 +31,12 @@ if ( isset( $error ) ) {
 }
 
 // if no error found, update the user data based whatever in the $_POST data
-$sql = "UPDATE maps SET name = :name, img = :img WHERE id = :id";
+$sql = "UPDATE maps SET map = :map, modified_by = :modified_by WHERE id = :id";
 $query = $database->prepare($sql);
 $query->execute([
-    'name' => $name,
-    'img' => $img,
-    'id' => $id
+    'map' => $map,
+    'id' => $id,
+    'modified_by' => $_SESSION['user']['id']
 ]);
 
 

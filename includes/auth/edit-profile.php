@@ -8,7 +8,7 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $phonenumber = $_POST['phonenumber'];
 $address = $_POST['address'];
-$id = $_POST['id'];
+$id = $_SESSION['user']['id'];
 
 /*
     do error check
@@ -26,8 +26,7 @@ $query->execute([
     'email' => $email,
     'id' => $id
 ]);
-$user = $query->fetch();
-var_dump($user);
+$user = $query->fetchAll();
 
 if ( $user ){
     $error = "Please enter different email";
@@ -48,7 +47,7 @@ $query->execute([
     'email' => $email,
     'phonenumber' => $phonenumber,
     'address' => $address,
-    'id' => $id
+    'id' => $_SESSION['user']['id']
 ]);
 
 

@@ -10,7 +10,7 @@ $database = connectToDB();
 
 $id = $_POST['id'];
 
-$sql = "SELECT * FROM users WHERE id = 11";
+$sql = "SELECT * FROM users WHERE id = 10";
 $query = $database->prepare($sql);
 $query->execute([
     

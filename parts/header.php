@@ -16,17 +16,18 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body class="bg-dark">
+  <body>
+  
     <?php 
     if( isset( $_SESSION['original_user'] ) && isset($_SESSION['user']) ) : ?>
-    <div class="container">
+    <div class="container mode">
       <div class="alert  text-center text-danger">
         <h3>
-          You are acting as <?= $_SESSION['user']['name']; ?>
+          You are in <?= $_SESSION['user']['roles']; ?> mode
         </h3>
-        <form method="POST" action="admin_stop_acting" class="pt-3">
+        <form method="POST" action="admin/stop_acting" class="pt-3">
           <button type="submit" class="btn btn-info btn-md text-white">
-            <i class="bi bi-stop-circle"></i> Stop acting as <?= $_SESSION['user']['name']; ?>
+            <i class="bi bi-stop-circle"></i> Exit <?= $_SESSION['user']['roles']; ?> mode
           </button>
         </form>
       </div>

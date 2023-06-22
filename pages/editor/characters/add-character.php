@@ -90,8 +90,8 @@ require "parts/header.php";
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-12">
-                            <label class="describe">Story</label>
-                            <textarea type="text" class="form-control" id="describe" name="describe" style="height: 100px"></textarea>
+                            <label class="story">Story</label>
+                            <textarea type="text" class="form-control" id="story" name="story" style="height: 100px"></textarea>
                         </div>
                     </div>
                 </div>

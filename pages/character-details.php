@@ -33,7 +33,7 @@ require "parts/header.php";
 
 ?>
 
-<section class="top">
+<section class="back">
       <div class="container">
         <form>
           <input
@@ -204,11 +204,11 @@ require "parts/header.php";
             </div>
             <div class="row pt-5 text-light">
               <div class="col-lg-6">
-                <h1>Description :</h1>
+                <h1>Story :</h1>
               </div>
               <div class="col-lg-6 w-100">
                 <h5>
-                <?= $character['describe']; ?>
+                <?= $character['story']; ?>
                 </h5>
               </div>
             </div>

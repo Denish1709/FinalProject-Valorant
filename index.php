@@ -28,14 +28,14 @@ switch($path) {
   case 'admin/delete':
     require "includes/admin/delete.php";
     break;
-  case 'admin/changepwd':
-    require "includes/admin/changepwd.php";
-    break;
   case 'admin/edit':
     require "includes/admin/edit.php";
     break;
   case 'admin/act_as_user':
     require "includes/admin/act_as_user.php";
+    break;
+  case 'admin/act_as_editor':
+    require "includes/admin/act_as_editor.php";
     break;
   case 'admin/stop_acting':
     require "includes/admin/stop_acting.php";
@@ -73,9 +73,6 @@ switch($path) {
     break;
     case 'manage-add':
       require "pages/admin/manage-add.php";
-      break;
-    case 'manage-changepwd':
-      require "pages/admin/manage-changepwd.php";
       break;
     case 'manage-edit':
       require "pages/admin/manage-edit.php";

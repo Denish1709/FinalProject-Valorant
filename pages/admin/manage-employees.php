@@ -73,17 +73,6 @@ require "parts/header.php";
                                         class="btn btn-success btn-md"
                                 ><i class="bi bi-pencil"></i
                                     ></a>
-                                <a
-                                        href="/manage-changepwd?id=<?= $user['id']; ?>"
-                                        class="btn btn-warning btn-md"
-                                ><i class="bi bi-key text-white"></i
-                                    ></a>
-                                <form method="POST" action="admin/act_as_user" class="d-inline">
-                                <input type="hidden" name="id" value="<?= $user['id']; ?>"/>
-                                <button type="submit" class="btn btn-info btn-md" >
-                                    <i class="bi bi-person text-info"></i>
-                                </button>
-                                </form>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-md" data-bs-toggle="modal" data-bs-target="#delete-modal-<?= $user['id']; ?>">
                                     <i class="bi bi-trash"></i

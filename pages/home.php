@@ -2,11 +2,15 @@
 
 $database = connectToDB();
 
-
-$sql = 'SELECT * FROM users';
-$query = $database->prepare($sql);
-$query->execute();
-$users = $query->fetchAll();
+if ( isset( $_SESSION["user"] ) ) { 
+  $sql = 'SELECT * FROM users WHERE id = :id';
+  $query = $database->prepare($sql);
+  $query->execute([
+      'id' => $_SESSION['user']['id']
+    
+  ]);
+  $users = $query->fetch();
+}
 
 $sql = 'SELECT * FROM characters';
 $query = $database->prepare($sql);
@@ -18,7 +22,7 @@ $query = $database->prepare($sql);
 $query->execute();
 $guns = $query->fetchAll();
 
-$sql = 'SELECT * FROM ranks';
+$sql = "SELECT ranks.*, users.name AS user_name FROM ranks JOIN users ON ranks.modified_by = users.id";
 $query = $database->prepare($sql);
 $query->execute();
 $ranks = $query->fetchAll();
@@ -55,7 +59,7 @@ require "parts/header.php";
           <li class="nav-item text-danger">
                 <?php if ( isset( $_SESSION["user"] ) ) { ?>
                 <a href="/profile" class="btn btn-danger btn-md">
-                  <i class="bi bi-person-circle pe-2"></i> <?= $_SESSION['user']['name'] ?>
+                  <i class="bi bi-person-circle pe-2"></i> <?= $users['name'] ?>
                 </a>
                 <?php } ?>
               </li>
@@ -183,7 +187,7 @@ require "parts/header.php";
                       <div class="text">
                         <div class="content text-center text-white">
                           <p>
-                          <?= $character['describe']; ?>
+                          <?= $character['story']; ?>
                           </p>
 
                           <a
@@ -221,7 +225,7 @@ require "parts/header.php";
                   <div class="text">
                     <div class="content text-center text-white">
                       <p>
-                      <?= $character['describe']; ?>
+                      <?= $character['story']; ?>
                       </p>
 
                       <a
@@ -259,7 +263,7 @@ require "parts/header.php";
                   <div class="text">
                     <div class="content text-center text-white">
                       <p>
-                      <?= $character['describe']; ?>
+                      <?= $character['story']; ?>
                       </p>
 
                       <a
@@ -298,7 +302,7 @@ require "parts/header.php";
                   <div class="text">
                     <div class="content text-center text-white">
                       <p>
-                      <?= $character['describe']; ?>
+                      <?= $character['story']; ?>
                       </p>
 
                       <a
@@ -561,6 +565,11 @@ require "parts/header.php";
               ?>
             <?php } ?>
           </div>
+          <?php if(isEditor()) : ?>
+            <div class="text-danger text-center">
+              <h5 class="pt-5">Modified By : <?= $rank['user_name']; ?></h5>
+            </div>
+          <?php endif; ?>
       </div>
     </section>
     <section class="third bg-dark pt-5 pb-5" id="six">
@@ -583,7 +592,7 @@ require "parts/header.php";
                           alt=""
                           class="img-fluid"
                         />
-                        <h3 class="text-danger text-center"><?= $map['name']; ?></h3>
+                        <h3 class="text-danger text-center"><?= $map['map']; ?></h3>
                       </div>
                   </div>
                 <?php } ?>
